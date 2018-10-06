@@ -13,7 +13,7 @@ public class MyServer {
         try{
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup,workerGroup).channel(NioServerSocketChannel.class)
-                    .childHandler(new MyserverInitalizer());//childHandler针对的是workerGroup，handler针对的是bossGroup
+                    .childHandler(new MyServerInitalizer());//childHandler针对的是workerGroup，handler针对的是bossGroup
             ChannelFuture channelFuture = serverBootstrap.bind(8899);
             channelFuture.channel().closeFuture().sync();
         }finally {

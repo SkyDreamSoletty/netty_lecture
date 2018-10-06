@@ -13,7 +13,7 @@ import io.netty.util.CharsetUtil;
 /**
  * 客户端和服务端连接之后这个类的对象就会被创建，就会调用initChannel方法
  */
-public class MyserverInitalizer extends ChannelInitializer<SocketChannel> {
+public class MyServerInitalizer extends ChannelInitializer<SocketChannel> {
     @Override
     protected void initChannel(SocketChannel ch) throws Exception {
         ChannelPipeline pipeline = ch.pipeline();
