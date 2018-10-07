@@ -59,6 +59,7 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String> {
         Channel channel = ctx.channel();
         channelGroup.writeAndFlush("【服务器】-"+channel.remoteAddress()+" 离开\n");//会遍历channelGroup中的每个channel并发送消息
         //netty会自动调用remove方法删除这个断开连接的channel
+        System.out.println(channelGroup.size());
     }
 
     /**
@@ -69,7 +70,7 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
-        channelGroup.writeAndFlush("【服务器】-"+channel.remoteAddress()+" 上线\n");//会遍历channelGroup中的每个channel并发送消息
+        System.out.println("【服务器】-"+channel.remoteAddress()+" 上线\n");
     }
 
     /**
@@ -80,7 +81,7 @@ public class MyChatServerHandler extends SimpleChannelInboundHandler<String> {
     @Override
     public void channelInactive(ChannelHandlerContext ctx) throws Exception {
         Channel channel = ctx.channel();
-        channelGroup.writeAndFlush("【服务器】-"+channel.remoteAddress()+" 下线\n");//会遍历channelGroup中的每个channel并发送消息
+        System.out.println("【服务器】-"+channel.remoteAddress()+" 下线\n");
     }
 
     /**
