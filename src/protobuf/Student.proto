@@ -1,0 +1,44 @@
+ syntax = "proto2"; // 指定使用的语言版本
+
+ package com.ssy.protobuf; //包名--通用包名，非java专用
+
+ option optimize_for = SPEED; //文件选项 ： speed:生产的代码运行速度优化 code_size:生成的代码体积很小但是执行较慢 lite_runtime:生成的代码针对移动端做了优化
+ option java_package = "com.ssy.netty.sixthexample"; //java包版本
+ option java_outer_classname = "MyDataInfo"; //生成的java类名称
+
+
+ //通过在消息外部包裹一层包装并添加枚举来实现传输不同类型的信息
+ message MyMessage{
+     enum DataType{
+         PersonType = 1;
+         DogType = 2;
+         CatType = 3;
+     }
+
+     required DataType dataType = 1;
+
+     //oneof 只允许包含的对象有一个被赋值。如果有多个被赋值，则最后赋值的有意义其它的会被清空。可以减少内存占用
+     oneof dataInfo{
+         Person person = 2;
+         Dog dog = 3;
+         Cat cat = 4;
+     }
+ }
+
+ message Person{
+     optional string name = 1;
+     optional int32 age = 2;
+     optional string address = 3;
+ }
+
+ message Dog{
+     optional string name = 1;
+     optional int32 age = 2;
+     optional string address = 3;
+ }
+
+ message Cat{
+     optional string name = 1;
+     optional int32 age = 2;
+     optional string color = 3;
+ }
